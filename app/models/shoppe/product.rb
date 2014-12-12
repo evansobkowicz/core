@@ -21,7 +21,7 @@ module Shoppe
     # The product's tax rate
     #
     # @return [Shoppe::TaxRate]
-    belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
+    # belongs_to :tax_rate, :class_name => "Shoppe::TaxRate"
 
     # Ordered items which are associated with this product
     has_many :order_items, :dependent => :restrict_with_exception, :class_name => 'Shoppe::OrderItem', :as => :ordered_item
@@ -40,7 +40,7 @@ module Shoppe
     end
     validates :name, :presence => true
     validates :permalink, :presence => true, :uniqueness => true, :permalink => true
-    validates :sku, :presence => true
+    # validates :sku, :presence => true
     validates :weight, :numericality => true
     validates :price, :numericality => true
     validates :cost_price, :numericality => true, :allow_blank => true
@@ -105,7 +105,7 @@ module Shoppe
       product_ids = Shoppe::ProductAttribute.searchable.where(:key => key, :value => values).pluck(:product_id).uniq
       where(:id => product_ids)
     end
-  
+
     # Imports products from a spreadsheet file
     # Example:
     #
